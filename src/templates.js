@@ -9,3 +9,15 @@ const ${filename}:FC = () => {
 export default ${filename};
 `
 }
+
+
+export const reactJs = (filename) => {
+  return `
+const ${filename} = () => {
+  const txt = '${filename} page';
+  return <h1>{txt}</h1>;
+};
+
+export default ${filename};
+`
+}

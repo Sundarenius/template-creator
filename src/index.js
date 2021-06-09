@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { reactTs } from './templates.js'
+import { reactTs, reactJs } from './templates.js'
 
 const createFile = (fileName, template) => {
   fs.writeFile(fileName, template, (err) => {
@@ -13,7 +13,7 @@ const createFile = (fileName, template) => {
 
 
 const buildReactFile = (name, ts, path) => {
-  const template = reactTs(name)
+  const template = ts ? reactTs(name) : reactJs(name)
   const fileName = `${path}/${name}.${ts ? 'tsx' : 'jsx'}`
   createFile(fileName, template)
 }
