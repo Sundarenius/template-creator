@@ -4,6 +4,6 @@ Create a template file for react and possibly other frameworks if needed (future
 
 Command:
 
-`file-template react App ./components true`
+`create-file react App ./components true`
 
-`file-template [fileTemplate] [fileName] [path] [isTypescript]`
+`create-file [fileTemplate] [fileName] [path] [isTypescript]`
