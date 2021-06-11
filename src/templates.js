@@ -3,13 +3,13 @@ export const reactTs = (filename) => {
 
 interface Props {}
 
-const ${filename}:FC<Props> = ({}): JSX.Element => {
+const ${filename}:FC<Props> = (): JSX.Element => {
   const txt = '${filename} page';
   return (
     <h1>
       {txt}
     </h1>
-  )
+  );
 };
 
 export default ${filename};

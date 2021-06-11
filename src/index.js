@@ -1,3 +1,4 @@
+import { debug } from 'console';
 import fs from 'fs'
 import { reactTs, reactJs } from './templates.js'
 
