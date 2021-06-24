@@ -2,7 +2,8 @@
 
 Create a template file for react and possibly other frameworks if needed (future release)
 
-Command:
+Commands:
+
 `npm i -g @hakansundstrom/template-creator`
 
 `create-file react App ./components true`
