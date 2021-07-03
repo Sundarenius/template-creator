@@ -52,7 +52,7 @@ const buildReactFile = (name, ts) => {
 const buildReadmeFile = () => {
   console.log('Will create a README.md for you ;)')
   specifyPathInput((path) => {
-    const fileName = `${path}/README_XX.md`
+    const fileName = `${path}/README.md`
     const split = path.split('/')
     const title = split[split.length - 1]
     createFile(fileName, readme(title.toUpperCase()))
