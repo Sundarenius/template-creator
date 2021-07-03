@@ -1,6 +1,24 @@
-import { debug } from 'console';
+// Might refactor later
 import fs from 'fs'
-import { reactTs, reactJs } from './templates.js'
+import { reactTs, reactJs, readme } from './templates.js'
+import readline from 'readline'
+
+// Helpers start
+const specifyPathInput = (callback) => {
+  let path = process.cwd()
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+   
+  rl.question('Specify a relative path without "/" at start or click enter for current path: ', p => {
+    if (p) {
+      path += `/${p}`
+    }
+    callback(path);
+    rl.close();
+  })
+}
 
 const createFile = (fileName, template) => {
   fs.writeFile(fileName, template, (err) => {
@@ -11,33 +29,56 @@ const createFile = (fileName, template) => {
       console.log(`${fileName} saved!`);
   });
 }
+// Helpers end
 
+// Build templates here
+const buildReactFile = (name, ts) => {
+  if (!name) {
+    console.log('Give me a filename as second param please')
+    return null
+  }
+  console.log(`${ts
+    ? 'Will create a React Ts file for you'
+    : 'Will create a React file for you'}`
+  )
 
-const buildReactFile = (name, ts, path) => {
-  const template = ts ? reactTs(name) : reactJs(name)
-  const fileName = `${path}/${name}.${ts ? 'tsx' : 'jsx'}`
-  createFile(fileName, template)
+  specifyPathInput((p) => {
+    const template = ts ? reactTs(name) : reactJs(name)
+    const fileName = `${p}/${name}.${ts ? 'tsx' : 'jsx'}`
+    createFile(fileName, template)
+  })
+}
+
+const buildReadmeFile = () => {
+  console.log('Will create a README.md for you ;)')
+  specifyPathInput((path) => {
+    const fileName = `${path}/README_XX.md`
+    const split = path.split('/')
+    const title = split[split.length - 1]
+    createFile(fileName, readme(title.toUpperCase()))
+  })
 }
 
 const handleArgs = () => {
   const args = process.argv.splice(2)
   const data = {
-    templateType: args[0],
+    templateType: args[0] || '',
     name: args[1],
-    path: args[2],
-    isTs: args[3]
-  }
-  const commandPath = process.cwd()
-  let path = commandPath
-
-  if (data.path && data.path.length > 1) {
-    path += `${data.path.replace('.', '')}`
+    isTs: args[2]
   }
 
   switch (data.templateType.toLowerCase()) {
     case 'react':
+      buildReactFile(data.name, data.isTs)
+      break;
+    case 'readme':
+      buildReadmeFile()
+      break;
     default:
-      buildReactFile(data.name, data.isTs, path)
+      console.log('No match')
+      console.log('Available templates are react, readme')
+      console.log('CMD ex: create-file [filetemplate] [filename] [isTs]')
+      console.log('You´ll be asked to specify a path in next step')
       break;
   }
 }

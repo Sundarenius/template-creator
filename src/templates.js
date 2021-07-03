@@ -27,3 +27,14 @@ const ${filename} = () => {
 export default ${filename};
 `
 }
+
+export const readme = (title) => {
+  return `# ${title}
+
+...information/introduction...
+
+## Maintainers
+This project was built and maintained by Håkan Sundström.
+https://github.com/Sundarenius
+`
+}
