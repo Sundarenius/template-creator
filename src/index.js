@@ -6,6 +6,7 @@ import readline from 'readline'
 // Helpers start
 const specifyPathInput = (callback) => {
   let path = process.cwd()
+  console.log(`Current path: ${path}`)
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
