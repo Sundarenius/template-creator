@@ -1,6 +1,12 @@
 // Might refactor later
 import fs from 'fs'
-import { reactTs, reactJs, readme } from './templates.js'
+import {
+  reactTs,
+  reactJs,
+  readme,
+  dockerFile,
+  dockerCompose,
+} from './templates.js'
 import readline from 'readline'
 
 // Helpers start
@@ -50,6 +56,18 @@ const buildReactFile = (name, ts) => {
   })
 }
 
+const createDockerFiles = () => {
+  console.log('Will create a Dockerfile + docker-compose.yml for you ;)')
+  specifyPathInput((path) => {
+    const dockerFilePath = `${path}/Dockerfile`
+    const dockerComposePath = `${path}/docker-compose.yml`
+    const split = path.split('/')
+    const title = split[split.length - 1]
+    createFile(dockerFilePath, dockerFile())
+    createFile(dockerComposePath, dockerCompose())
+  })
+}
+
 const buildReadmeFile = () => {
   console.log('Will create a README.md for you ;)')
   specifyPathInput((path) => {
@@ -75,9 +93,12 @@ const handleArgs = () => {
     case 'readme':
       buildReadmeFile()
       break;
+    case 'docker':
+      createDockerFiles()
+      break;
     default:
       console.log('No match')
-      console.log('Available templates are react, readme')
+      console.log('Available templates are react, readme, and docker')
       console.log('CMD ex: create-file [filetemplate] [filename] [isTs]')
       console.log('You´ll be asked to specify a path in next step')
       break;

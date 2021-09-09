@@ -38,3 +38,53 @@ This project was built and maintained by Håkan Sundström.
 https://github.com/Sundarenius
 `
 }
+
+export const dockerFile = () => {
+  return `# 1 docker build -f Dockerfile -t name-of-image .
+# 2 docker run --name name-of-container -p 3030:3030 --rm -i name-of-image
+
+FROM node:14
+
+# ENV variables
+ENV appDir=appdir
+ENV port=8080
+
+# Create app directory
+WORKDIR /\${appDir}
+COPY package.json /\${appDir}
+COPY . /\${appDir}
+
+# Add this start.sh if you have many custom commands or just use multiple RUN commands
+# ADD start.sh /
+# RUN chmod 755 ./start.sh
+# CMD ["./start.sh"]
+
+RUN npm install
+
+# RUN rm -rf ./node_modules ./package-lock.json && npm install
+# RUN rm -rf ./node_modules ./yarn.lock && yarn install --force
+
+CMD ["npm", "run", "serve"]
+
+EXPOSE \${port}  
+`
+}
+
+export const dockerCompose = () => {
+  return `# Rebuild image based on Dockerfile: 'docker-compose up -d --no-deps --build'
+# Start container: 'docker compose up --force-recreate'
+# Sync ports here and in Dockerfile
+
+version: "3.9"  # optional since v1.27.0
+services:
+  my-service:
+    container_name: 'my-container'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - '.:/appdir'
+`
+}
