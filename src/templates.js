@@ -71,7 +71,7 @@ EXPOSE \${port}
 }
 
 export const dockerCompose = () => {
-  return `# Rebuild image based on Dockerfile: 'docker-compose up -d --no-deps --build'
+  return `# Rebuild images: 'docker compose build'
 # Start container: 'docker compose up --force-recreate'
 # Sync ports here and in Dockerfile
 
