@@ -88,3 +88,13 @@ services:
       - '.:/appdir'
 `
 }
+
+export const gitIgnore = () => `**/node_modules
+**/.DS_Store
+**/.nuxt
+**/certs
+**/.env
+**/build
+**/dist
+data
+`

@@ -6,6 +6,7 @@ import {
   readme,
   dockerFile,
   dockerCompose,
+  gitIgnore,
 } from './templates.js'
 import readline from 'readline'
 
@@ -78,6 +79,14 @@ const buildReadmeFile = () => {
   })
 }
 
+const createGitIgnoreFile = () => {
+  console.log('Will create a .gitignore for you ;)')
+  specifyPathInput((path) => {
+    const fileName = `${path}/.gitignore`
+    createFile(fileName, gitIgnore())
+  })
+}
+
 const handleArgs = () => {
   const args = process.argv.splice(2)
   const data = {
@@ -95,6 +104,9 @@ const handleArgs = () => {
       break;
     case 'docker':
       createDockerFiles()
+      break;
+    case 'gitignore':
+      createGitIgnoreFile()
       break;
     default:
       console.log('No match')
