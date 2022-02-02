@@ -10,6 +10,9 @@ Commands:
 
 `create-file [fileTemplate] [fileName] [path] [isTypescript]`
 
+Possible values:
+react, readme, docker, gitignore
+
 ## Maintainers
 This project was built by Håkan Sundström and is maintained by him.
 https://github.com/Sundarenius
