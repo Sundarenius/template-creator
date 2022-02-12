@@ -1,3 +1,4 @@
+const fileNameToId = (filename) => `${filename.match(/[A-Z][a-z]+/g).map(v => v.toLowerCase()).join('-')}-container}`
 export const reactTs = (filename) => {
   return `import type { FC } from 'react';
 
@@ -6,9 +7,9 @@ interface Props {}
 const ${filename}:FC<Props> = (): JSX.Element => {
   const txt = '${filename} page';
   return (
-    <h1>
-      {txt}
-    </h1>
+    <div id="${fileNameToId(filename)}">
+      <h3>{txt}</h3>
+    </div>
   );
 };
 
