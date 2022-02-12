@@ -1,4 +1,4 @@
-const fileNameToId = (filename) => `${filename.match(/[A-Z][a-z]+/g).map(v => v.toLowerCase()).join('-')}-container}`
+const fileNameToId = (filename) => `${filename.match(/[A-Z][a-z]+/g).map(v => v.toLowerCase()).join('-')}-container`
 export const reactTs = (filename) => {
   return `import type { FC } from 'react';
 
