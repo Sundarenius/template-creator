@@ -46,8 +46,25 @@ const buildReactFile = (name, ts) => {
     return null
   }
   console.log(`${ts
-    ? 'Will create a React Ts file for you'
+    ? 'Will create a React TypeScript file for you'
     : 'Will create a React file for you'}`
+  )
+
+  specifyPathInput((p) => {
+    const template = ts ? reactTs(name) : reactJs(name)
+    const fileName = `${p}/${name}.${ts ? 'tsx' : 'jsx'}`
+    createFile(fileName, template)
+  })
+}
+
+const buildReactSpecFile = (name, ts) => {
+  if (!name) {
+    console.log('Give me a filename as second param please')
+    return null
+  }
+  console.log(`${ts
+    ? 'Will create a React-SPEC TS file for you'
+    : 'Will create a React-SPEC file for you'}`
   )
 
   specifyPathInput((p) => {
@@ -98,6 +115,8 @@ const handleArgs = () => {
   switch (data.templateType.toLowerCase()) {
     case 'react':
       buildReactFile(data.name, data.isTs)
+    case 'react-spec':
+      buildReactSpecFile(data.name, data.isTs)
       break;
     case 'readme':
       buildReadmeFile()
