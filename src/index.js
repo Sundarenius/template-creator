@@ -7,6 +7,7 @@ import {
   dockerFile,
   dockerCompose,
   gitIgnore,
+  reactSpec,
 } from './templates.js'
 import readline from 'readline'
 
@@ -57,7 +58,7 @@ const buildReactFile = (name, ts) => {
   })
 }
 
-const buildReactSpecFile = (name, ts) => {
+const buildReactSpecFile = (name) => {
   if (!name) {
     console.log('Give me a filename as second param please')
     return null
@@ -67,9 +68,9 @@ const buildReactSpecFile = (name, ts) => {
     : 'Will create a React-SPEC file for you'}`
   )
 
-  specifyPathInput((p) => {
-    const template = ts ? reactTs(name) : reactJs(name)
-    const fileName = `${p}/${name}.${ts ? 'tsx' : 'jsx'}`
+  specifyPathInput(() => {
+    const template = reactSpec(name)
+    const fileName = `${p}/${name}.spec.jsx`
     createFile(fileName, template)
   })
 }
