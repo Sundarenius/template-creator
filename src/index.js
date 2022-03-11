@@ -65,7 +65,7 @@ const buildReactSpecFile = (name) => {
   }
   console.log('Will create a React-SPEC file for you')
 
-  specifyPathInput(() => {
+  specifyPathInput((p) => {
     const template = reactSpec(name)
     const fileName = `${p}/${name}.spec.jsx`
     createFile(fileName, template)
