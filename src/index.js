@@ -63,10 +63,7 @@ const buildReactSpecFile = (name) => {
     console.log('Give me a filename as second param please')
     return null
   }
-  console.log(`${ts
-    ? 'Will create a React-SPEC TS file for you'
-    : 'Will create a React-SPEC file for you'}`
-  )
+  console.log('Will create a React-SPEC file for you')
 
   specifyPathInput(() => {
     const template = reactSpec(name)
