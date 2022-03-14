@@ -43,17 +43,15 @@ export const reactSpec = (filename) => {
   */
   
   const content = () => (
-    <Suspense fallback={<div>Fallback</div>}>
-      <${filename} />
-    </Suspense>
+    <Provider store={store}>
+      <Suspense fallback={<div>Fallback</div>}>
+        <${filename} />
+      </Suspense>
+    </Provider>
   )
   
   test('Renders the component without throwing error', () => {
-    render(
-      <Provider store={store}>
-        { content() }
-      </Provider>
-    )
+    render(content())
   })
 `
 }
