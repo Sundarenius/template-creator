@@ -31,11 +31,13 @@ export default ${filename};
 
 export const reactSpec = (filename) => {
   return `import React from 'react'
-  import { render } from '@testing-library/react'
-  import { Provider } from 'react-redux'
-  import { store } from 'redux/store'
-  import { Suspense } from 'react'
-  import ${filename} from './${filename}'
+import { render } from '@testing-library/react'
+import { prettyDOM } from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
+import { Provider } from 'react-redux'
+import { store } from 'redux/store'
+import { Suspense } from 'react'
+import ${filename} from './${filename}'
   
   /*
    * @info - Create tests inside a test() or it(). describe() blocks is not really recommended.
@@ -52,6 +54,12 @@ export const reactSpec = (filename) => {
   
   test('Renders the component without throwing error', () => {
     render(content())
+  })
+
+  test('Log pretty HTML (change this)', () => {
+    const { container } = render(content())
+    const dom = prettyDOM(container)
+    console.log(dom)
   })
 `
 }
