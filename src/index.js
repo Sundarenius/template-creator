@@ -113,6 +113,7 @@ const handleArgs = () => {
   switch (data.templateType.toLowerCase()) {
     case 'react':
       buildReactFile(data.name, data.isTs)
+      break;
     case 'react-spec':
       buildReactSpecFile(data.name, data.isTs)
       break;
@@ -129,7 +130,7 @@ const handleArgs = () => {
       console.log('No match')
       console.log('Available templates are react, readme, and docker')
       console.log('CMD ex: create-file [filetemplate] [filename] [isTs]')
-      console.log('You´ll be asked to specify a path in next step')
+      console.log('You\'ll be asked to specify a path in next step')
       break;
   }
 }
