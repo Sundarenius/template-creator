@@ -4,7 +4,7 @@ export const reactTs = (filename) => {
 
 interface Props {}
 
-const ${filename}:FC<Props> = (): JSX.Element => {
+const ${filename}:FC<Props> = ({}): JSX.Element => {
   const txt = '${filename} page';
   return (
     <div id="${fileNameToId(filename)}">
