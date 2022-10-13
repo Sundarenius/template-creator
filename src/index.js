@@ -136,7 +136,7 @@ const handleArgs = () => {
       break;
     default:
       console.log('No match')
-      console.log(`Available templates are: ${Object.keys(templateTypes)}`)
+      console.log(`Available templates are: ${Object.values(templateTypes)}`)
       console.log('CMD ex: create-file [filetemplate] [filename] [isTs]')
       console.log('You\'ll be asked to specify a path in next step')
       break;
