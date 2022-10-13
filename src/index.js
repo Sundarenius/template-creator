@@ -102,6 +102,14 @@ const createGitIgnoreFile = () => {
   })
 }
 
+const templateTypes = {
+  REACT: 'react',
+  REACT_SPEC: 'react-spec',
+  README: 'readme',
+  DOCKER: 'docker',
+  GITIGNORE: 'gitignore'
+}
+
 const handleArgs = () => {
   const args = process.argv.splice(2)
   const data = {
@@ -111,24 +119,24 @@ const handleArgs = () => {
   }
 
   switch (data.templateType.toLowerCase()) {
-    case 'react':
+    case templateTypes.REACT:
       buildReactFile(data.name, data.isTs)
       break;
-    case 'react-spec':
+    case templateTypes.REACT_SPEC:
       buildReactSpecFile(data.name, data.isTs)
       break;
-    case 'readme':
+    case templateTypes.README:
       buildReadmeFile()
       break;
-    case 'docker':
+    case templateTypes.DOCKER:
       createDockerFiles()
       break;
-    case 'gitignore':
+    case templateTypes.GITIGNORE:
       createGitIgnoreFile()
       break;
     default:
       console.log('No match')
-      console.log('Available templates are react, readme, and docker')
+      console.log(`Available templates are: ${Object.keys(templateTypes)}`)
       console.log('CMD ex: create-file [filetemplate] [filename] [isTs]')
       console.log('You\'ll be asked to specify a path in next step')
       break;
